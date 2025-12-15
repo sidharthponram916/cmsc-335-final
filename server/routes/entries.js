@@ -30,6 +30,8 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+/* Unused but wanted to implement anyways for practice */ 
+
 router.put("/:id", async (req, res) => {
   try {
     const updated = await Entry.findByIdAndUpdate(req.params.id, req.body, {
