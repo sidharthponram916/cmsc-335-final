@@ -5,10 +5,10 @@ Sidharth Ponram (sponram)
 None
 
 **App Description:**  
-This is a React + Express application that allows users to keep a list of countries they have visited and also learn more about the countries they have visited.
+This is a React + Express application that allows users to keep a list of countries they have visited and also learn more about the countries they have visited. 
 
 **YouTube Video Link:**  
-TBD
+[https://www.youtube.com/watch?v=x-cEONej5CY](https://www.youtube.com/watch?v=x-cEONej5CY)
 
 **APIs:**  
 [REST Countries API](https://restcountries.com)
