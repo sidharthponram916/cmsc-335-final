@@ -12,10 +12,6 @@ app.use(express.json());
 const entriesRouter = require("./routes/entries");
 app.use("/api/entries", entriesRouter);
 
-app.get("/", (req, res) => {
-  res.send("Welcome to World Bucket List!");
-});
-
 const PORT = process.env.PORT || 5000;
 
 async function startDatabase() {
@@ -35,10 +31,10 @@ async function startDatabase() {
 
 startDatabase();
 
-app.use(express.static(path.join(__dirname, "../client/build"))); 
+app.use(express.static(path.join(__dirname, "../client/build")));
 
 app.get(/.*/, (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/dist/index.html"));
+  res.sendFile(path.join(__dirname, "../client/build/index.html"));
 });
 
 app.listen(PORT, () => {
