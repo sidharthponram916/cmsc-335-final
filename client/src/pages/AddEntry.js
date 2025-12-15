@@ -7,7 +7,7 @@ function AddEntry() {
   const [form, setForm] = useState({
     locationType: "country",
     name: "",
-    lastVisited: "", // yyyy-mm-dd
+    lastVisited: "",
   });
 
   const [status, setStatus] = useState({
@@ -18,27 +18,123 @@ function AddEntry() {
 
   const US_STATES = useMemo(
     () => [
-      "Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware",
-      "Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana",
-      "Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana",
-      "Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Carolina",
-      "North Dakota","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina",
-      "South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia",
-      "Wisconsin","Wyoming",
+      "Alabama",
+      "Alaska",
+      "Arizona",
+      "Arkansas",
+      "California",
+      "Colorado",
+      "Connecticut",
+      "Delaware",
+      "Florida",
+      "Georgia",
+      "Hawaii",
+      "Idaho",
+      "Illinois",
+      "Indiana",
+      "Iowa",
+      "Kansas",
+      "Kentucky",
+      "Louisiana",
+      "Maine",
+      "Maryland",
+      "Massachusetts",
+      "Michigan",
+      "Minnesota",
+      "Mississippi",
+      "Missouri",
+      "Montana",
+      "Nebraska",
+      "Nevada",
+      "New Hampshire",
+      "New Jersey",
+      "New Mexico",
+      "New York",
+      "North Carolina",
+      "North Dakota",
+      "Ohio",
+      "Oklahoma",
+      "Oregon",
+      "Pennsylvania",
+      "Rhode Island",
+      "South Carolina",
+      "South Dakota",
+      "Tennessee",
+      "Texas",
+      "Utah",
+      "Vermont",
+      "Virginia",
+      "Washington",
+      "West Virginia",
+      "Wisconsin",
+      "Wyoming",
     ],
     []
   );
 
   const COUNTRIES = useMemo(
     () => [
-      "Afghanistan","Albania","Algeria","Andorra","Angola","Argentina","Australia","Austria",
-      "Bahamas","Bangladesh","Belgium","Brazil","Canada","Chile","China","Colombia","Costa Rica",
-      "Croatia","Cuba","Czechia","Denmark","Dominican Republic","Egypt","Estonia","Finland","France",
-      "Germany","Greece","Hungary","Iceland","India","Indonesia","Ireland","Israel","Italy","Jamaica",
-      "Japan","Kenya","Luxembourg","Malaysia","Mexico","Netherlands","New Zealand","Norway","Peru",
-      "Philippines","Poland","Portugal","Romania","Singapore","South Africa","South Korea","Spain",
-      "Sweden","Switzerland","Thailand","Turkey","Ukraine","United Kingdom","United States","Vietnam",
-      // (trimmed for readability – your full list still works here)
+      "Afghanistan",
+      "Albania",
+      "Algeria",
+      "Andorra",
+      "Angola",
+      "Argentina",
+      "Australia",
+      "Austria",
+      "Bahamas",
+      "Bangladesh",
+      "Belgium",
+      "Brazil",
+      "Canada",
+      "Chile",
+      "China",
+      "Colombia",
+      "Costa Rica",
+      "Croatia",
+      "Cuba",
+      "Czechia",
+      "Denmark",
+      "Dominican Republic",
+      "Egypt",
+      "Estonia",
+      "Finland",
+      "France",
+      "Germany",
+      "Greece",
+      "Hungary",
+      "Iceland",
+      "India",
+      "Indonesia",
+      "Ireland",
+      "Israel",
+      "Italy",
+      "Jamaica",
+      "Japan",
+      "Kenya",
+      "Luxembourg",
+      "Malaysia",
+      "Mexico",
+      "Netherlands",
+      "New Zealand",
+      "Norway",
+      "Peru",
+      "Philippines",
+      "Poland",
+      "Portugal",
+      "Romania",
+      "Singapore",
+      "South Africa",
+      "South Korea",
+      "Spain",
+      "Sweden",
+      "Switzerland",
+      "Thailand",
+      "Turkey",
+      "Ukraine",
+      "United Kingdom",
+      "United States",
+      "Vietnam",
     ],
     []
   );
@@ -63,7 +159,11 @@ function AddEntry() {
     e.preventDefault();
 
     if (!form.locationType || !form.name || !form.lastVisited) {
-      setStatus({ loading: false, error: "Please fill out all fields.", success: "" });
+      setStatus({
+        loading: false,
+        error: "Please fill out all fields.",
+        success: "",
+      });
       return;
     }
 
@@ -76,7 +176,7 @@ function AddEntry() {
         body: JSON.stringify({
           locationType: form.locationType,
           name: form.name,
-          lastVisited: new Date(form.lastVisited), // send real Date
+          lastVisited: new Date(form.lastVisited),
         }),
       });
 
@@ -100,7 +200,6 @@ function AddEntry() {
             <h2 className="text-xl font-semibold mb-4">Add Entry</h2>
 
             <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-              {/* Location Type */}
               <div className="flex flex-col gap-1">
                 <label className="text-sm">Location Type</label>
                 <select
@@ -114,7 +213,6 @@ function AddEntry() {
                 </select>
               </div>
 
-              {/* Country / State */}
               <div className="flex flex-col gap-1">
                 <label className="text-sm">
                   {form.locationType === "state" ? "U.S. State" : "Country"}
@@ -138,7 +236,6 @@ function AddEntry() {
                 </select>
               </div>
 
-              {/* Date input */}
               <div className="flex flex-col gap-1">
                 <label className="text-sm">Last Visited</label>
                 <input
@@ -150,8 +247,12 @@ function AddEntry() {
                 />
               </div>
 
-              {status.error && <p className="text-red-200 text-sm">{status.error}</p>}
-              {status.success && <p className="text-green-200 text-sm">{status.success}</p>}
+              {status.error && (
+                <p className="text-red-200 text-sm">{status.error}</p>
+              )}
+              {status.success && (
+                <p className="text-green-200 text-sm">{status.success}</p>
+              )}
 
               <div className="flex gap-3 mt-2">
                 <button
