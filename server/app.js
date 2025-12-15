@@ -2,6 +2,7 @@ require("dotenv").config();
 
 const express = require("express");
 const mongoose = require("mongoose");
+const path = require("path");
 
 const app = express();
 
@@ -33,6 +34,12 @@ async function startDatabase() {
 }
 
 startDatabase();
+
+app.use(express.static(path.join(__dirname, "../client/build"))); 
+
+app.get(/.*/, (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/dist/index.html"));
+});
 
 app.listen(PORT, () => {
   console.log(`Starting WorldBucketList Server @ ${PORT}`);
